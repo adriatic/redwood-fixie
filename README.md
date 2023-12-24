@@ -1,122 +1,318 @@
 # README
 
-Welcome to [RedwoodJS](https://redwoodjs.com)!
+This app is a minimal RW app sufficient to serve as a SPA, hosting tailwindcss
 
-> **Prerequisites**
->
-> - Redwood requires [Node.js](https://nodejs.org/en/) (=18.x) and [Yarn](https://yarnpkg.com/) (>=1.15)
-> - Are you on Windows? For best results, follow our [Windows development setup](https://redwoodjs.com/docs/how-to/windows-development-setup) guide
+Is is created as described in RW tutorial up to and not included to [A Second Page and a Link](https://redwoodjs.com/docs/tutorial/chapter1/second-page).
 
-Start by installing dependencies:
+At that point we added
 
 ```
-yarn install
+yarn rw setup ui tailwindcss
 ```
 
-Then start the development server:
+Resulting with adding the following entries to evelopment log
 
 ```
-yarn redwood dev
+nik$ yarn rw setup ui tailwind
+✔ Installing project-wide packages...
+  ✔ Install prettier-plugin-tailwindcss@0.4.1
+✔ Installing web side packages...
+  ✔ Install postcss, postcss-loader, tailwindcss, autoprefixer
+✔ Configuring PostCSS...
+✔ Initializing Tailwind CSS...
+✔ Adding directives to index.css...
+↓ Updating tailwind 'scaffold.css'...
+✔ Adding recommended VS Code extensions to project settings...
+✔ Adding tailwind config entry in prettier...
+✔ Adding tailwind prettier plugin...
 ```
 
-Your browser should automatically open to [http://localhost:8910](http://localhost:8910) where you'll see the Welcome Page, which links out to many great resources.
+The package.json is added the tailwind section
 
-> **The Redwood CLI**
->
-> Congratulations on running your first Redwood CLI command! From dev to deploy, the CLI is with you the whole way. And there's quite a few commands at your disposal:
->
-> ```
-> yarn redwood --help
-> ```
->
-> For all the details, see the [CLI reference](https://redwoodjs.com/docs/cli-commands).
+<img width="386" alt="image" src="https://github.com/adriatic/fixie-logs/assets/2712405/c7629e51-592c-4a25-b6a5-d5502d28fd90">
 
-## Prisma and the database
-
-Redwood wouldn't be a full-stack framework without a database. It all starts with the schema. Open the [`schema.prisma`](api/db/schema.prisma) file in `api/db` and replace the `UserExample` model with the following `Post` model:
-
-```prisma
-model Post {
-  id        Int      @id @default(autoincrement())
-  title     String
-  body      String
-  createdAt DateTime @default(now())
-}
-```
-
-Redwood uses [Prisma](https://www.prisma.io/), a next-gen Node.js and TypeScript ORM, to talk to the database. Prisma's schema offers a declarative way of defining your app's data models. And Prisma [Migrate](https://www.prisma.io/migrate) uses that schema to make database migrations hassle-free:
+The file index.html is changed to
 
 ```
-yarn rw prisma migrate dev
+<!DOCTYPE html>
+<html lang="en">
 
-# ...
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <title>Pricing Cards</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
 
-? Enter a name for the new migration: › create posts
+<body>
+    <!-- Global Container -->
+    <div class="flex items-center justify-center min-h-screen bg-slate-800">
+      <!-- Inner Container -->
+      <div
+        class="flex flex-col my-6 space-y-6 md:space-y-0 md:space-x-6 md:flex-row md:my-0"
+      >
+        <!-- Col 1 -->
+        <div class="bg-slate-700 rounded-xl text-white">
+          <!-- Upper Container -->
+          <div class="p-8 mx-3 mt-3 rounded-t-xl bg-slate-800">
+            <div class="text-center uppercase">Basic</div>
+            <h2 class="mt-10 font-serif text-5xl text-center">100GB</h2>
+            <h3 class="mt-2 text-center">$1.99/Month</h3>
+            <div class="flex justify-center">
+              <a
+                href="#"
+                class="inline-block px-10 py-3 my-6 text-center border border-violet-600 rounded-lg duration-200 hover:bg-violet-800 hover:border-violet-800"
+                >Purchase</a
+              >
+            </div>
+          </div>
+
+          <!-- Border -->
+          <div class="border-t border-slate-700"></div>
+
+          <!-- Lower Container -->
+          <div class="p-8 mx-3 mb-3 rounded-b-xl bg-slate-800">
+            <!-- List Container -->
+            <div class="flex flex-col space-y-2">
+              <!-- List Item 1 -->
+              <div class="flex justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M5 12l5 5l10 -10" />
+                </svg>
+                <span class="text-sm ml-1">100 GB of storage</span>
+              </div>
+
+              <!-- List Item 2 -->
+              <div class="flex justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M5 12l5 5l10 -10" />
+                </svg>
+                <span class="text-sm ml-1">Option to add members</span>
+              </div>
+
+              <!-- List Item 3 -->
+              <div class="flex justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M5 12l5 5l10 -10" />
+                </svg>
+                <span class="text-sm ml-1">Extra member benefits</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Col 2 -->
+        <div class="bg-violet-600 rounded-xl text-white">
+          <!-- Upper Container -->
+          <div class="p-8 mx-3 mt-3 rounded-t-xl bg-slate-800">
+            <div class="text-center uppercase">Standard</div>
+            <h2 class="mt-10 font-serif text-5xl text-center">200GB</h2>
+            <h3 class="mt-2 text-center">$3.99/Month</h3>
+            <div class="flex justify-center">
+              <a
+                href="#"
+                class="inline-block px-10 py-3 my-6 text-center border border-violet-600 rounded-lg duration-200 bg-violet-600 hover:bg-violet-800 hover:border-violet-800"
+                >Purchase</a
+              >
+            </div>
+          </div>
+
+          <!-- Border -->
+          <div class="border-t border-slate-700"></div>
+
+          <!-- Lower Container -->
+          <div class="p-8 mx-3 mb-3 rounded-b-xl bg-slate-800">
+            <!-- List Container -->
+            <div class="flex flex-col space-y-2">
+              <!-- List Item 1 -->
+              <div class="flex justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M5 12l5 5l10 -10" />
+                </svg>
+                <span class="text-sm ml-1">200 GB of storage</span>
+              </div>
+
+              <!-- List Item 2 -->
+              <div class="flex justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M5 12l5 5l10 -10" />
+                </svg>
+                <span class="text-sm ml-1">Option to add members</span>
+              </div>
+
+              <!-- List Item 3 -->
+              <div class="flex justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M5 12l5 5l10 -10" />
+                </svg>
+                <span class="text-sm ml-1">Extra member benefits</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Col 3 -->
+        <div class="bg-slate-700 rounded-xl text-white">
+          <!-- Upper Container -->
+          <div class="p-8 mx-3 mt-3 rounded-t-xl bg-slate-800">
+            <div class="text-center uppercase">Premium</div>
+            <h2 class="mt-10 font-serif text-5xl text-center">2 TB</h2>
+            <h3 class="mt-2 text-center">$8.99/Month</h3>
+            <div class="flex justify-center">
+              <a
+                href="#"
+                class="inline-block px-10 py-3 my-6 text-center border border-violet-600 rounded-lg duration-200 hover:bg-violet-800 hover:border-violet-800"
+                >Purchase</a
+              >
+            </div>
+          </div>
+
+          <!-- Border -->
+          <div class="border-t border-slate-700"></div>
+
+          <!-- Lower Container -->
+          <div class="p-8 mx-3 mb-3 rounded-b-xl bg-slate-800">
+            <!-- List Container -->
+            <div class="flex flex-col space-y-2">
+              <!-- List Item 1 -->
+              <div class="flex justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M5 12l5 5l10 -10" />
+                </svg>
+                <span class="text-sm ml-1">2 TB of storage</span>
+              </div>
+
+              <!-- List Item 2 -->
+              <div class="flex justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M5 12l5 5l10 -10" />
+                </svg>
+                <span class="text-sm ml-1">Option to add members</span>
+              </div>
+
+              <!-- List Item 3 -->
+              <div class="flex justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M5 12l5 5l10 -10" />
+                </svg>
+                <span class="text-sm ml-1">Extra member benefits</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  <!-- Please keep this div empty -->
+  <div id="redwood-app"></div>
+</body>
+
+</html>
 ```
 
-> `rw` is short for `redwood`
-
-You'll be prompted for the name of your migration. `create posts` will do.
-
-Now let's generate everything we need to perform all the CRUD (Create, Retrieve, Update, Delete) actions on our `Post` model:
+Lastly before running it the first time we run the commmand
 
 ```
-yarn redwood generate scaffold post
+npx tailwindcss -i ./web/src/index.css -o ./web/dist/output.css
 ```
 
-Navigate to [http://localhost:8910/posts/new](http://localhost:8910/posts/new), fill in the title and body, and click "Save".
+Note that this command ensure that tailwindcss copies all of the tailwindcss configuration from ./web/src/index.css
+Resulting with SPA:
 
-Did we just create a post in the database? Yup! With `yarn rw generate scaffold <model>`, Redwood created all the pages, components, and services necessary to perform all CRUD actions on our posts table.
 
-## Frontend first with Storybook
+<img width="1028" alt="image" src="https://github.com/adriatic/fixie-logs/assets/2712405/8c312f55-31f9-42c9-99a0-06fa1893bfad">
 
-Don't know what your data models look like? That's more than ok—Redwood integrates Storybook so that you can work on design without worrying about data. Mockup, build, and verify your React components, even in complete isolation from the backend:
-
-```
-yarn rw storybook
-```
-
-Seeing "Couldn't find any stories"? That's because you need a `*.stories.{tsx,jsx}` file. The Redwood CLI makes getting one easy enough—try generating a [Cell](https://redwoodjs.com/docs/cells), Redwood's data-fetching abstraction:
-
-```
-yarn rw generate cell examplePosts
-```
-
-The Storybook server should hot reload and now you'll have four stories to work with. They'll probably look a little bland since there's no styling. See if the Redwood CLI's `setup ui` command has your favorite styling library:
-
-```
-yarn rw setup ui --help
-```
-
-## Testing with Jest
-
-It'd be hard to scale from side project to startup without a few tests. Redwood fully integrates Jest with both the front- and back-ends, and makes it easy to keep your whole app covered by generating test files with all your components and services:
-
-```
-yarn rw test
-```
-
-To make the integration even more seamless, Redwood augments Jest with database [scenarios](https://redwoodjs.com/docs/testing#scenarios)  and [GraphQL mocking](https://redwoodjs.com/docs/testing#mocking-graphql-calls).
-
-## Ship it
-
-Redwood is designed for both serverless deploy targets like Netlify and Vercel and serverful deploy targets like Render and AWS:
-
-```
-yarn rw setup deploy --help
-```
-
-Don't go live without auth! Lock down your app with Redwood's built-in, database-backed authentication system ([dbAuth](https://redwoodjs.com/docs/authentication#self-hosted-auth-installation-and-setup)), or integrate with nearly a dozen third-party auth providers:
-
-```
-yarn rw setup auth --help
-```
-
-## Next Steps
-
-The best way to learn Redwood is by going through the comprehensive [tutorial](https://redwoodjs.com/docs/tutorial/foreword) and joining the community (via the [Discourse forum](https://community.redwoodjs.com) or the [Discord server](https://discord.gg/redwoodjs)).
-
-## Quick Links
-
-- Stay updated: read [Forum announcements](https://community.redwoodjs.com/c/announcements/5), follow us on [Twitter](https://twitter.com/redwoodjs), and subscribe to the [newsletter](https://redwoodjs.com/newsletter)
-- [Learn how to contribute](https://redwoodjs.com/docs/contributing)
+This is the information from the [udemy tutorial "Pricing Grids"](https://www.udemy.com/course/tailwind-from-scratch/learn/lecture/32346180#search) by Brad Traversy
